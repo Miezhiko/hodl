@@ -20,20 +20,24 @@ typedef struct {
 
 void
 init_file() {
-  int fd = open(MEMORY_FILE, O_RDWR | O_CREAT, FILE_MODE);
+  const int fd = open(MEMORY_FILE, O_RDWR | O_CREAT, FILE_MODE);
   if (fd == -1) {
     perror("open");
     exit(1);
   }
 
-  ftruncate(fd, sysconf(_SC_PAGESIZE));
+  const int ft = ftruncate(fd, sysconf(_SC_PAGESIZE));
+  if (ft == -1) {
+    perror("ftruncate");
+    exit(1);
+  }
 
   close(fd);
 }
 
 void
 store_value(const char* key, double value) {
-  int fd = open(MEMORY_FILE, O_RDWR, FILE_MODE);
+  const int fd = open(MEMORY_FILE, O_RDWR, FILE_MODE);
   if (fd == -1) {
     perror("open");
     exit(1);
@@ -57,9 +61,9 @@ store_value(const char* key, double value) {
   close(fd);
 }
 
-double
+const double
 get_value(const char* key) {
-  int fd = open(MEMORY_FILE, O_RDONLY);
+  const int fd = open(MEMORY_FILE, O_RDONLY);
   if (fd == -1) {
     perror("open");
     exit(1);
@@ -76,7 +80,7 @@ get_value(const char* key) {
     entry++;
   }
 
-  double value = entry->value;
+  const double value = entry->value;
 
   munmap(memory, sizeof(hodl_entry));
   close(fd);
@@ -94,7 +98,7 @@ main(int argc, char* argv[]) {
   if (argc == 3) {
     store_value(argv[1], atof(argv[2]));
   } else if (argc == 2) {
-    double value = get_value(argv[1]);
+    const double value = get_value(argv[1]);
     printf("%f\n", value);
   } else {
     printf("Usage: %s <key> [<value>]\n", argv[0]);
