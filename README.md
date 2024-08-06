@@ -1,0 +1,1 @@
+simple key value storage on single file
