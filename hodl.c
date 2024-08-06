@@ -18,7 +18,8 @@ typedef struct {
   double value;
 } hodl_entry;
 
-void init_file() {
+void
+init_file() {
   int fd = open(MEMORY_FILE, O_RDWR | O_CREAT, FILE_MODE);
   if (fd == -1) {
     perror("open");
