@@ -10,7 +10,7 @@ all: hodl
 rebuild: clean all
 
 hodl: $(CSRC)
-	$(CC) $(CFLAGS) $(CSRC) -o hodl
+	$(CC) $(CFLAGS) -I . $(CSRC) -o hodl
 
 install: hodl
 	$(MKDIR) $(DESTDIR)$(BINDIR)
