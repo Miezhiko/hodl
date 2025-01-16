@@ -1,4 +1,4 @@
-CFLAGS=-Ofast -Wall
+CFLAGS=-O3 -ffast-math -Wall
 CSRC=hodl.c
 INSTALL   ?= install
 MKDIR     ?= $(INSTALL) -d
