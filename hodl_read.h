@@ -16,7 +16,7 @@ get_value(const char* key) {
     exit(1);
   }
 
-  hodl_entry* entry = (hodl_entry*) memory;
+  const hodl_entry* entry = (hodl_entry*) memory;
   while (entry->key[0] != '\0' && strcmp(entry->key, key) != 0) {
     entry++;
   }
