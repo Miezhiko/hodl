@@ -2,10 +2,14 @@
 #include "hodl_write.h"
 #include "hodl_read.h"
 #include "hodl_list.h"
+#include "hodl_reset.h"
 
 void
 usage(char* appName) {
-  printf("Usage:\n%s <key> [<value>] : to store or read value\n --list to list all values\n --help to show this help\n", appName);
+  printf("Usage:\n%s <key> [<value>] : to store or read value\n\
+ --list to list all values\n\
+ --reset to remove memory file\n\n\
+ --help to show this help\n", appName);
 }
 
 int
@@ -20,6 +24,8 @@ main(int argc, char* argv[]) {
   } else if (argc == 2) {
     if (strcmp(argv[1], "--list") == 0) {
       list_values();
+    } else if (strcmp(argv[1], "--reset") == 0) {
+      reset();
     } else if (strcmp(argv[1], "--help") == 0) {
       usage(argv[0]);
     } else {
