@@ -5,15 +5,15 @@
 #include "hodl_reset.h"
 
 void
-usage(char* appName) {
+usage(const char* appName) {
   printf("Usage:\n%s <key> [<value>] : to store or read value\n\
  --list to list all values\n\
- --reset to remove memory file\n\n\
+ --reset to remove memory file\n\
  --help to show this help\n", appName);
 }
 
-int
-main(int argc, char* argv[]) {
+const int
+main(const int argc, const char* argv[]) {
   struct stat sb;
   if (stat(MEMORY_FILE, &sb) == -1) {
     init_file();

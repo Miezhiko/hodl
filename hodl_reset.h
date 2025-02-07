@@ -2,7 +2,8 @@
 
 #include "hodl_types.h"
 
-void reset() {
+void
+reset() {
   if (unlink(MEMORY_FILE) == -1) {
     perror("unlink");
     exit(1);

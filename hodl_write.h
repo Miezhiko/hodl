@@ -20,7 +20,7 @@ init_file() {
 }
 
 void
-store_value(const char* key, double value) {
+store_value(const char* key, const double value) {
   const int fd = open(MEMORY_FILE, O_RDWR, FILE_MODE);
   if (fd == -1) {
     perror("open");
